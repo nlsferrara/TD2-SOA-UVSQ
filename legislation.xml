@@ -1,0 +1,14 @@
+<EvaluationProprieteRequest>
+  <Propriete>
+    <Adresse>
+      <Rue>123, rue de la Rue</Rue>
+      <Ville>Villeville</Ville>
+      <CodePostal>75000</CodePostal>
+      <Pays>France</Pays>
+    </Adresse>
+    <AnneeConstruction>2010</AnneeConstruction>
+    <LitigesFonciersEnCours>false</LitigesFonciersEnCours>
+    <ConformeReglementsBatiment>true</ConformeReglementsBatiment>
+    <AdmissiblePretImmobilier>true</AdmissiblePretImmobilier>
+  </Propriete>
+</EvaluationProprieteRequest>

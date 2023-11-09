@@ -1,0 +1,83 @@
+<VentesRecentes>
+    <Vente>
+        <Adresse>
+            <Rue>123, rue de la Rue</Rue>
+            <Ville>Villeville</Ville>
+            <CodePostal>75000</CodePostal>
+            <Pays>France</Pays>
+        </Adresse>
+        <PrixVente>250000</PrixVente>
+        <DescriptionPropriete>
+            <Etage>2</Etage>
+            <Taille>56</Taille>
+            <Jardin>True</Jardin>
+            <Quartier>Résidentiel</Quartier>
+            <Tranquilite>Calme</Tranquilite>    
+        </DescriptionPropriete>
+    </Vente>
+    <Vente>
+        <Adresse>
+            <Rue>456, avenue de l'Avenue</Rue>
+            <Ville>Villeville</Ville>
+            <CodePostal>75000</CodePostal>
+            <Pays>France</Pays>
+        </Adresse>
+        <PrixVente>220000</PrixVente>
+        <DescriptionPropriete>
+            <Etage>1</Etage>
+            <Taille>60</Taille>
+            <Jardin>False</Jardin>
+            <Quartier>Central</Quartier>
+            <Tranquilite>Animé</Tranquilite>    
+        </DescriptionPropriete>
+    </Vente>
+    <Vente>
+        <Adresse>
+            <Rue>789, avenue des Fleurs</Rue>
+            <Ville>Villeville</Ville>
+            <CodePostal>75000</CodePostal>
+            <Pays>France</Pays>
+        </Adresse>
+        <PrixVente>280000</PrixVente>
+        <DescriptionPropriete>
+            <Etage>1</Etage>
+            <Taille>75</Taille>
+            <Jardin>True</Jardin>
+            <Quartier>Résidentiel</Quartier>
+            <Tranquilite>Calme</Tranquilite>
+        </DescriptionPropriete>
+    </Vente>
+    <Vente>
+        <Adresse>
+            <Rue>101, rue de la Colline</Rue>
+            <Ville>Villeville</Ville>
+            <CodePostal>75000</CodePostal>
+            <Pays>France</Pays>
+        </Adresse>
+        <PrixVente>210000</PrixVente>
+        <DescriptionPropriete>
+            <Etage>3</Etage>
+            <Taille>90</Taille>
+            <Jardin>False</Jardin>
+            <Quartier>Centrale</Quartier>
+            <Tranquilite>Animé</Tranquilite>
+        </DescriptionPropriete>
+    </Vente>
+    <Vente>
+        <Adresse>
+            <Rue>555, chemin des Bois</Rue>
+            <Ville>Villeville</Ville>
+            <CodePostal>75000</CodePostal>
+            <Pays>France</Pays>
+        </Adresse>
+        <PrixVente>265000</PrixVente>
+        <DescriptionPropriete>
+            <Etage>2</Etage>
+            <Taille>65</Taille>
+            <Jardin>True</Jardin>
+            <Quartier>Résidentiel</Quartier>
+            <Tranquilite>Calme</Tranquilite>
+        </DescriptionPropriete>
+    </Vente>
+    <!-- Ajoutez d'autres ventes récentes ici -->
+</VentesRecentes>

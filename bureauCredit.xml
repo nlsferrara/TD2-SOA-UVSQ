@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClientInformation>
+    <Client>
+        <ID>1</ID>
+        <Nom>
+            <PrenomClient>John</PrenomClient>
+            <NomClient>Doe</NomClient>
+        </Nom>
+        <Dette>10000</Dette>
+        <PaiementRetard>5</PaiementRetard>
+        <Faillite>True</Faillite>
+    </Client>
+
+    <Client>
+        <ID>2</ID>
+        <Nom>
+            <PrenomClient>John</PrenomClient>
+            <NomClient>Marc</NomClient>
+        </Nom>
+        <Dette>1000</Dette>
+        <PaiementRetard>1</PaiementRetard>
+        <Faillite>False</Faillite>
+    </Client>
+
+    <Client>
+        <ID>2</ID>
+        <Nom>
+            <PrenomClient>John</PrenomClient>
+            <NomClient>Serer</NomClient>
+        </Nom>
+        <Dette>0</Dette>
+        <PaiementRetard>0</PaiementRetard>
+        <Faillite>False</Faillite>
+    </Client>
+</ClientInformation>

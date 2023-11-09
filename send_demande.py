@@ -1,34 +1,8 @@
+import requests
 import xml.etree.ElementTree as ET
-from fastapi import FastAPI
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
-app = FastAPI()
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-@app.post("/demande-pret")
-async def demande_pret(data: bytes):
-    # Convertissez les données du fichier en un objet Python
-    tree = ET.parse(data)
-    root = tree.getroot()
-
-    # Récupérez les informations de la demande de prêt
-    montant = root.attrib["montant"]
-    durée = root.attrib["durée"]
-    taux = root.attrib["taux"]
-
-    # Créez la réponse du service
-    response = {
-        "montant": montant,
-        "durée": durée,
-        "taux": taux,
-    }
-
-    return response
 
 if __name__ == '__main__':
     # Le chemin du dossier que vous souhaitez surveiller
@@ -40,15 +14,31 @@ if __name__ == '__main__':
             if event.is_directory:
                 return  print(f"Le dossier {event.src_path} n'est pas un dossier valide.")
             print(f"Le fichier {event.src_path} a été créé.")
-
+            
             # Récupérez le chemin du fichier créé
             data = event.src_path
+            body = open(data, 'r').read()
+            headers = {'Content-Type': 'application/xml'}
+            url = 'http://127.0.0.1:8000/submit'
 
-            # Envoyez la demande de prêt au service FastAPI
-            response = app.post("/demande-pret", data=data)
+            try:
+                response = requests.post(url, data=body.encode('utf-8'), headers=headers)
 
-            # Imprimez la réponse du service
-            print(response)
+                print("Bonjour, voici ma demande de prêt :")
+
+                tree = ET.parse(data)
+
+                # Convertir l'arbre XML en une chaîne de caractères
+                print(ET.tostring(tree.getroot(), encoding='utf-8').decode('utf-8'))
+
+                # Vérifiez la réponse du service
+                if response:
+                    print("\nRéponse du service DemandePret:")
+                    print(response)
+                else:
+                    print("La réponse du service est vide.")
+            except requests.exceptions.RequestException as e:
+                print(e)
 
     observateur = Observer()
     observateur.schedule(fileEvenements(), path=dossier, recursive=False)

@@ -34,7 +34,7 @@ if __name__ == '__main__':
                 # Vérifiez la réponse du service
                 if response:
                     print("\nRéponse du service DemandePret:")
-                    print(response)
+                    print(response.text)
                 else:
                     print("La réponse du service est vide.")
             except requests.exceptions.RequestException as e:

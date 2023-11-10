@@ -1,7 +1,7 @@
 import requests
 import xml.etree.ElementTree as ET
 
-def lecture_bdd(xml_db='demande_pret_Doe.xml'):
+def lecture_bdd(xml_db):
     root = ET.parse(xml_db).getroot()
     prenom_client = root.find('.//PrenomClient')
     prenom_client = prenom_client.text if prenom_client is not None else ''
@@ -34,7 +34,8 @@ def lecture_bdd(xml_db='demande_pret_Doe.xml'):
     description_propriete_tranquilite = root.find('.//DescriptionPropriete/Tranquilite')
     description_propriete_tranquilite = description_propriete_tranquilite.text if description_propriete_tranquilite is not None else ''
     description_propriete_annnee_construction = root.find('.//DescriptionPropriete/AnneeConstruction')
-    description_propriete_annnee_construction = int(description_propriete_annnee_construction.text) if description_propriete_annnee_construction is not None else 0
+    description_propriete_annnee_construction = int(
+        description_propriete_annnee_construction.text) if description_propriete_annnee_construction is not None else 0
     revenu_mensuel = root.find('.//RevenuMensuel')
     revenu_mensuel = int(revenu_mensuel.text) if revenu_mensuel is not None else 0
     depenses_mensuelles = root.find('.//DepensesMensuelles')
@@ -65,46 +66,28 @@ def lecture_bdd(xml_db='demande_pret_Doe.xml'):
     }
     return informations_structurees
 
-def to_service_evaluation_propiete(xml_db='demande_pret_Doe.xml'):
-    informations_structurees = lecture_bdd(xml_db)
-    
+
+def to_service_verification_solvabilite(lecture_xml_db):
+    informations_structurees = lecture_xml_db
+
     root = ET.Element('DemandePret')
-    adresse = ET.SubElement(root, 'Adresse')
-    adresse_rue = ET.SubElement(adresse, 'Rue')
-    adresse_rue.text = informations_structurees['Adresse']['Rue']
-    adresse_ville = ET.SubElement(adresse, 'Ville')
-    adresse_ville.text = informations_structurees['Adresse']['Ville']
-    adresse_code_postal = ET.SubElement(adresse, 'CodePostal')
-    adresse_code_postal.text = informations_structurees['Adresse']['CodePostal']
-    adresse_pays = ET.SubElement(adresse, 'Pays')
-    adresse_pays.text = informations_structurees['Adresse']['Pays']
-    montant_pret_demande = ET.SubElement(root, 'MontantPretDemande')
-    montant_pret_demande.text = str(informations_structurees['MontantPretDemande'])
-    description_propriete = ET.SubElement(root, 'DescriptionPropriete')
-    description_propriete_etage = ET.SubElement(description_propriete, 'Etage')
-    description_propriete_etage.text = informations_structurees['DescriptionPropriete']['Etage']
-    description_propriete_taille = ET.SubElement(description_propriete, 'Taille')
-    description_propriete_taille.text = informations_structurees['DescriptionPropriete']['Taille']
-    description_propriete_jardin = ET.SubElement(description_propriete, 'Jardin')
-    description_propriete_jardin.text = informations_structurees['DescriptionPropriete']['Jardin']
-    description_propriete_quartier = ET.SubElement(description_propriete, 'Quartier')
-    description_propriete_quartier.text = informations_structurees['DescriptionPropriete']['Quartier']
-    description_propriete_tranquilite = ET.SubElement(description_propriete, 'Tranquilite')
-    description_propriete_tranquilite.text = informations_structurees['DescriptionPropriete']['Tranquilite']
-    description_propriete_annnee_construction = ET.SubElement(description_propriete, 'AnneeConstruction')
-    description_propriete_annnee_construction.text = str(informations_structurees['DescriptionPropriete']['AnneeConstruction'])
+    prenom_client = ET.SubElement(root, 'PrenomClient')
+    prenom_client.text = informations_structurees['PrenomClient']
+    nom_client = ET.SubElement(root, 'NomClient')
+    nom_client.text = informations_structurees['NomClient']
+    revenu_mensuel = ET.SubElement(root, 'RevenuMensuel')
+    revenu_mensuel.text = str(informations_structurees['RevenuMensuel'])
+    depenses_mensuelles = ET.SubElement(root, 'DepensesMensuelles')
+    depenses_mensuelles.text = str(informations_structurees['DepensesMensuelles'])
     tree = ET.tostring(root)
-    tree = tree.decode('utf-8')
-
-    return tree
-
+    return tree.decode('utf-8')
 
 if __name__ == '__main__':
     headers = {'Content-Type': 'application/xml'}
-    url = 'http://127.0.0.1:8003/evaluation-propriete'
+    url = 'http://127.0.0.1:8002/verification-solvabilite'
     
     xml_db = 'demande_pret_Doe.xml'
-    data = to_service_evaluation_propiete(xml_db)
+    data = to_service_verification_solvabilite(lecture_bdd(xml_db))
     
     try:
         # Appelez la méthode du service en lui passant le XML comme argument

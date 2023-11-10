@@ -5,6 +5,7 @@ import requests
 data='johndoe.xml'
 
 body = open(data, 'r').read()
+print(body)
 headers = {'Content-Type': 'application/xml'}
 url = 'http://127.0.0.1:8001/extract-information'
 

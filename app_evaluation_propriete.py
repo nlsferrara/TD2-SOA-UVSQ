@@ -23,7 +23,7 @@ def extract_information(demande_pret: str = Body()):
     litiges_fonciers_en_cours, conforme_reglements_batiment, admissible_pret_immobilier = verifier_conformite_legale(adresse)
 
     tree = envoie_reponse(litiges_fonciers_en_cours, conforme_reglements_batiment, admissible_pret_immobilier, valeur_estimee)
-
+    
     return tree
 
 

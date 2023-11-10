@@ -44,9 +44,9 @@ def getApprobationPret(evalProp, infoClient, scoreSolvabilite):
     headers = {'Content-Type': 'application/xml'}
     url = 'http://127.0.0.1:8004/decision-approbation'
     xml_data = {
-        'evalProp': evalProp.replace('"', ''),
-        'infoClient': infoClient,
-        'scoreSolvabilite': scoreSolvabilite.replace('"', '')
+        'evalProp': str(evalProp.replace('"', '')),
+        'infoClient': str(infoClient),
+        'scoreSolvabilite': str(scoreSolvabilite.replace('"', ''))
     }
     print(f"xml_data : {xml_data}")
     try:

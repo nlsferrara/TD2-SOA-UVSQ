@@ -66,7 +66,7 @@ def calculateScore(tree2: str = Body()):
     if int(revenu) >= int(depense) + int(dette):
         score += 1
 
-    return score
+    return str(score)
 
 
 if __name__ == '__main__':
